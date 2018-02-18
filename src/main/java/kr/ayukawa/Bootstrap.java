@@ -8,7 +8,7 @@ import org.springframework.messaging.support.MessageBuilder;
 public class Bootstrap {
 	public static void main(String[] args) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-		MessageChannel input = (MessageChannel)context.getBean("input");
-		input.send(MessageBuilder.withPayload("Spring Integration rocks").build());
+		Gateway gateway = (Gateway)context.getBean("gateway");
+		gateway.send("Spring Integration rocks");
 	}
 }

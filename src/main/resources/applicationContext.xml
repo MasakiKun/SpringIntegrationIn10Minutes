@@ -14,6 +14,7 @@
         output-channel="output"
         ref="shouter"
         method="shout" />
+    <int:gateway id="gateway" service-interface="kr.ayukawa.Gateway" default-request-channel="input" />
     <file:outbound-channel-adapter channel="output" directory="." />
     <bean id="shouter" class="kr.ayukawa.Shouter" />
 </beans>
