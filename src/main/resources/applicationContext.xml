@@ -2,17 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd">
+                           http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+                           http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
 
     <int:channel id="input" />
-    <int:channel id="output">
-        <int:queue capacity="10" />
-    </int:channel>
+    <int:channel id="output" />
     <int:service-activator
         input-channel="input"
         output-channel="output"
         ref="shouter"
         method="shout" />
+    <file:outbound-channel-adapter channel="output" directory="." />
     <bean id="shouter" class="kr.ayukawa.Shouter" />
 </beans>
