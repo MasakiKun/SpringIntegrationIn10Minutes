@@ -1,14 +1,33 @@
-group 'kr.ayukawa'
-version '1.0-SNAPSHOT'
+group "kr.ayukawa"
+version "1.0-SNAPSHOT"
 
-apply plugin: 'java'
+apply plugin: "java"
+apply plugin: "application"
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = "kr.ayukawa.Bootstrap"
+
+def versions = [
+	"spring": "4.3.14.RELEASE"
+]
 
 repositories {
-    mavenCentral()
+	jcenter()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	// Spring Framework dependencies
+	compile group: 'org.springframework', name: 'spring-aop', version: "${versions.spring}"
+	compile group: 'org.springframework', name: 'spring-beans', version: "${versions.spring}"
+	compile group: 'org.springframework', name: 'spring-context', version: "${versions.spring}"
+	compile group: 'org.springframework', name: 'spring-core', version: "${versions.spring}"
+	compile group: 'org.springframework', name: 'spring-tx', version: "${versions.spring}"
+	// Spring Integration dependencies
+	compile group: 'org.springframework.integration', name: 'spring-integration-core', version: "${versions.spring}"
+	compile group: 'org.springframework.integration', name: 'spring-integration-file', version: "${versions.spring}"
+	// etc...
+	compile group: 'org.aopalliance', name: 'com.springsource.org.aopalliance', version: '1.0.0'
+	compile group: 'org.apache.commons', name: 'com.springsource.org.apache.commons.logging', version: '1.1.1'
 }
